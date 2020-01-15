@@ -1,0 +1,16 @@
+<div>
+  <h1>Sección de noticias</h1>
+  <div *ngFor="let f of feeds">
+    <app-feed
+      [id]="f.id"
+      [title]="f.title"
+      [content]="f.content"
+      (feedEmitter)="onSelectedFeed(f)"
+    ></app-feed>
+    <hr />
+  </div>
+
+  <div>
+    <p>The last selected new was : {{ lastReadedFeedId }}</p>
+  </div>
+</div>

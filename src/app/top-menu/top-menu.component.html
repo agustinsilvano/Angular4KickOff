@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <div class="topnav">
+      <ul class="nav navbar-nav">
+        <!-- routerLinkActiveOptions to solve problem with empty path -->
+        <a
+          routerLink=""
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Home</a
+        >
+        <a routerLink="news" routerLinkActive="active">News</a>
+        <a routerLink="contact" routerLinkActive="active">Contact</a>
+        <a routerLink="about" routerLinkActive="active">About</a>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a routerLink="session" routerLinkActive="active">
+            Session >
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
