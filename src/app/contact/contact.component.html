@@ -1,0 +1,13 @@
+<div>
+  <h1>Tenemos varios métodos de contacto :</h1>
+  <h3>Podemos estar en contacto por cualquiera de los siguientes métodos.</h3>
+
+  <app-email-contact [email]="contactMedia.email"></app-email-contact>
+
+  <app-whats-app-contact [wppNumber]="contactMedia.whatsappNumber">
+  </app-whats-app-contact>
+
+  <app-phone-contact
+    [phoneNumber]="contactMedia.phoneNumber"
+  ></app-phone-contact>
+</div>
