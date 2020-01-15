@@ -21,7 +21,7 @@ export class NewsComponent implements OnInit {
   ngOnInit() {
     const f1 = new FeedComponent();
     f1.title = 'Estamos de viaje!';
-    f1.content = 'Estamos yendo de joda';
+    f1.content = 'Estamos yendo de joda.';
     const f2 = new FeedComponent();
     f2.title = 'Vuelta al laburo';
     f2.content = 'Estamos yendo a laburar.';
