@@ -20,7 +20,7 @@ export class FeedComponent implements OnInit {
 
   feedClicked(feedId: number) {
     this.feedEmitter.emit(feedId);
-    console.log('Event emited! With value ' + feedId);
+    // console.log('Event emited! With value ' + feedId);
   }
 
   ngOnInit() {}

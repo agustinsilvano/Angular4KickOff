@@ -4,7 +4,7 @@ import { LandingElementComponent } from './landing-element/landing-element.compo
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
@@ -14,6 +14,8 @@ import { ContactComponent } from './contact/contact.component';
 import { PhoneContactComponent } from './phone-contact/phone-contact.component';
 import { WhatsAppContactComponent } from './whats-app-contact/whats-app-contact.component';
 import { EmailContactComponent } from './email-contact/email-contact.component';
+import { AddFeedComponent } from './add-feed/add-feed.component';
+import { FeedDataService } from './services/feeddata.service';
 
 @NgModule({
   declarations: [
@@ -27,19 +29,27 @@ import { EmailContactComponent } from './email-contact/email-contact.component';
     ContactComponent,
     PhoneContactComponent,
     WhatsAppContactComponent,
-    EmailContactComponent
+    EmailContactComponent,
+    AddFeedComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot([
-      { path: 'contact', component: ContactComponent },
-      { path: 'news', component: NewsComponent },
-      { path: '', component: LandingCarouselComponent },
-      { path: '**', component: NotFoundComponent }
-    ])
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(
+      [
+        { path: 'contact', component: ContactComponent },
+        { path: 'news', component: NewsComponent },
+        { path: '', component: LandingCarouselComponent },
+        { path: '**', component: NotFoundComponent }
+      ],
+      {
+        onSameUrlNavigation: 'reload'
+      }
+    )
   ],
-  providers: [],
+  providers: [FeedDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

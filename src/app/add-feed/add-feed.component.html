@@ -1,0 +1,19 @@
+<form [formGroup]="addFeedForm" (ngSubmit)="onSubmit(addFeedForm.value)">
+  <div>
+    <label for="title">
+      Title
+    </label>
+    <input id="title" type="text" formControlName="title" />
+  </div>
+
+  <div>
+    <label for="contet">
+      Content
+    </label>
+    <input id="content" type="text" formControlName="content" />
+  </div>
+
+  <button type="submit" class="btn btn-success">
+    Confirmar
+  </button>
+</form>
