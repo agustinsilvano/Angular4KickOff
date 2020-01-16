@@ -32,23 +32,7 @@ import { FeedDataService } from './services/feeddata.service';
     EmailContactComponent,
     AddFeedComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule.forRoot(
-      [
-        { path: 'contact', component: ContactComponent },
-        { path: 'news', component: NewsComponent },
-        { path: '', component: LandingCarouselComponent },
-        { path: '**', component: NotFoundComponent }
-      ],
-      {
-        onSameUrlNavigation: 'reload'
-      }
-    )
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [FeedDataService],
   bootstrap: [AppComponent]
 })
