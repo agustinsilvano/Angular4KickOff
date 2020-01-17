@@ -3,17 +3,38 @@
     <label for="title">
       Title
     </label>
-    <input id="title" type="text" formControlName="title" />
+    <input
+      id="title"
+      type="text"
+      class="form-control"
+      formControlName="title"
+      required
+    />
   </div>
 
   <div>
     <label for="contet">
       Content
     </label>
-    <input id="content" type="text" formControlName="content" />
+    <input
+      id="content"
+      type="text"
+      class="form-control"
+      formControlName="content"
+      required
+    />
   </div>
-
+  <!-- radio buttons -->
+  <div class="radio" *ngFor="let type of feedType">
+    <label formControlName="coso">
+      <input type="radio" name="type" ngModel [value]="type" />
+      {{ type }}
+    </label>
+  </div>
   <button type="submit" class="btn btn-success">
     Confirmar
   </button>
 </form>
+<p *ngIf="!addFeedForm.valid && addFeedForm.touched">
+  Formulario inválido! Todos los campos deben contener datos
+</p>

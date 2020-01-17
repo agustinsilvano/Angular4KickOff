@@ -10,13 +10,19 @@ import { FeedDataService, FeedData } from '../services/feeddata.service';
 export class AddFeedComponent implements OnInit {
   @Input() title: string;
   @Input() content: string;
+  @Input() coso: string;
   addFeedForm;
+  feedType = ['normal', 'urgency'];
 
   constructor(
     private formBuilder: FormBuilder,
     private feedDataService: FeedDataService
   ) {
-    this.addFeedForm = this.formBuilder.group({ title: '', content: '' });
+    this.addFeedForm = this.formBuilder.group({
+      title: '',
+      content: '',
+      coso: ''
+    });
   }
 
   onSubmit(inputValue) {
@@ -25,6 +31,7 @@ export class AddFeedComponent implements OnInit {
       content: inputValue.content
     });
     this.feedDataService.feedAdded.next(inputValue);
+    this.addFeedForm.reset();
   }
 
   ngOnInit() {}
