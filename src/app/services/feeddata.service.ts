@@ -1,4 +1,3 @@
-import { EventEmitter, Output } from '@angular/core';
 import { Subject } from 'rxjs';
 
 export interface FeedData {
