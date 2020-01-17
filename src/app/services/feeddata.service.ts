@@ -1,4 +1,5 @@
 import { EventEmitter, Output } from '@angular/core';
+import { Subject } from 'rxjs';
 
 export interface FeedData {
   title: string;
@@ -7,7 +8,7 @@ export interface FeedData {
 
 export class FeedDataService {
   private feedsInfo: Array<FeedData> = new Array<FeedData>();
-  feedAdded: EventEmitter<any> = new EventEmitter<any>();
+  feedAdded: Subject<any> = new Subject<any>();
 
   constructor() {
     this.seedData();

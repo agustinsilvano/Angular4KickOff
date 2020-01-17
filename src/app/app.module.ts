@@ -16,6 +16,7 @@ import { WhatsAppContactComponent } from './whats-app-contact/whats-app-contact.
 import { EmailContactComponent } from './email-contact/email-contact.component';
 import { AddFeedComponent } from './add-feed/add-feed.component';
 import { FeedDataService } from './services/feeddata.service';
+import { CanDeactivateNewGuardService } from './services/can-deactivate-new-guard.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { FeedDataService } from './services/feeddata.service';
     AddFeedComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
-  providers: [FeedDataService],
+  providers: [FeedDataService, CanDeactivateNewGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

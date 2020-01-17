@@ -1,6 +1,8 @@
 import { FeedComponent } from './../feed/feed.component';
 import { Component, OnInit } from '@angular/core';
 import { FeedDataService, FeedData } from '../services/feeddata.service';
+import { CanAddComponentDeactivate } from '../services/can-deactivate-new-guard.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-news',
@@ -8,7 +10,7 @@ import { FeedDataService, FeedData } from '../services/feeddata.service';
   styleUrls: ['./news.component.css']
   // providers: [FeedDataService]
 })
-export class NewsComponent implements OnInit {
+export class NewsComponent implements OnInit, CanAddComponentDeactivate {
   feeds: FeedComponent[] = new Array<FeedComponent>();
 
   lastReadedFeedId: number;
@@ -44,5 +46,15 @@ export class NewsComponent implements OnInit {
 
       this.feeds.push(feedComp);
     });
+  }
+
+  canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
+    if (this.lastReadedFeedId == null || this.lastReadedFeedId === 0) {
+      return confirm(
+        'Quieres abandonar la página sin seleccionar ninguna noticia?'
+      );
+    } else {
+      return true;
+    }
   }
 }

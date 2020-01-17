@@ -24,7 +24,7 @@ export class AddFeedComponent implements OnInit {
       title: inputValue.title,
       content: inputValue.content
     });
-    this.feedDataService.feedAdded.emit();
+    this.feedDataService.feedAdded.next(inputValue);
   }
 
   ngOnInit() {}
