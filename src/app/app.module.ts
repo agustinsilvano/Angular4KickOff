@@ -1,10 +1,9 @@
 import { FeedComponent } from './feed/feed.component';
 import { NewsComponent } from './news/news.component';
 import { LandingElementComponent } from './landing-element/landing-element.component';
-import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
@@ -33,7 +32,7 @@ import { CanDeactivateNewGuardService } from './services/can-deactivate-new-guar
     EmailContactComponent,
     AddFeedComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [FeedDataService, CanDeactivateNewGuardService],
   bootstrap: [AppComponent]
 })

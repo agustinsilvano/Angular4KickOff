@@ -1,40 +1,91 @@
-<form [formGroup]="addFeedForm" (ngSubmit)="onSubmit(addFeedForm.value)">
-  <div>
-    <label for="title">
-      Title
-    </label>
-    <input
-      id="title"
-      type="text"
-      class="form-control"
-      formControlName="title"
-      required
-    />
-  </div>
+<div class="col-xs-12 col-sm-10 col-md-8 ">
+  <form [formGroup]="addFeedForm" (ngSubmit)="onSubmit()">
+    <div formGroupName="feedBasics">
+      <div>
+        <label for="title">
+          Title
+        </label>
+        <input
+          id="title"
+          type="text"
+          class="form-control"
+          formControlName="title"
+        />
+        <span
+          *ngIf="
+            addFeedForm.get('feedBasics.title').errors['invalidTitle'] &&
+            addFeedForm.get('feedBasics.title').touched
+          "
+          class="help-block"
+          >El contenido NO debe contener la palabra 'atticalabs'.</span
+        >
+        <span
+          *ngIf="
+            addFeedForm.get('feedBasics.title').errors['required'] &&
+            addFeedForm.get('feedBasics.title').touched
+          "
+          class="help-block"
+          >El título no puede ser vacío.
+        </span>
+      </div>
 
-  <div>
-    <label for="contet">
-      Content
-    </label>
-    <input
-      id="content"
-      type="text"
-      class="form-control"
-      formControlName="content"
-      required
-    />
-  </div>
-  <!-- radio buttons -->
-  <div class="radio" *ngFor="let type of feedType">
-    <label formControlName="coso">
-      <input type="radio" name="type" ngModel [value]="type" />
-      {{ type }}
-    </label>
-  </div>
-  <button type="submit" class="btn btn-success">
-    Confirmar
-  </button>
-</form>
-<p *ngIf="!addFeedForm.valid && addFeedForm.touched">
-  Formulario inválido! Todos los campos deben contener datos
-</p>
+      <div>
+        <label for="contet">
+          Content
+        </label>
+        <input
+          id="content"
+          type="text"
+          class="form-control"
+          formControlName="content"
+        />
+        <span
+          *ngIf="
+            addFeedForm.get('feedBasics.content').errors['invalidContent'] &&
+            addFeedForm.get('feedBasics.content').touched
+          "
+          class="help-block"
+          >El contenido NO debe contener la palabra 'atticalabs'.</span
+        >
+        <span
+          *ngIf="
+            addFeedForm.get('feedBasics.content').errors['required'] &&
+            addFeedForm.get('feedBasics.content').touched
+          "
+          class="help-block"
+          >El contenido no puede ser vacío.</span
+        >
+      </div>
+    </div>
+    <!-- radio buttons -->
+    <div class="radio" *ngFor="let type of feedType">
+      <label>
+        <input
+          type="radio"
+          formControlName="feedSLA"
+          name="feedSLA"
+          [value]="type"
+        />
+        {{ type }}
+      </label>
+    </div>
+    <div formArrayName="tags">
+      <h5>Tags for feed</h5>
+      <button class="btn btn-default" type="button" (click)="onTagAdded()">
+        Add tag.
+      </button>
+      <div
+        class="form-group"
+        *ngFor="let tagControl of controls; let i = index"
+      >
+        <input type="text" class="from-control" [formControlName]="i" />
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success">
+      Confirmar
+    </button>
+    <span class="help-block" *ngIf="!addFeedForm.valid && addFeedForm.touched">
+      Formulario inválido! Todos los campos deben contener datos
+    </span>
+  </form>
+</div>
