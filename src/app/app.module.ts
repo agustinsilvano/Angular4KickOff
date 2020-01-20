@@ -16,6 +16,7 @@ import { EmailContactComponent } from './email-contact/email-contact.component';
 import { AddFeedComponent } from './add-feed/add-feed.component';
 import { FeedDataService } from './services/feeddata.service';
 import { CanDeactivateNewGuardService } from './services/can-deactivate-new-guard.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,12 @@ import { CanDeactivateNewGuardService } from './services/can-deactivate-new-guar
     EmailContactComponent,
     AddFeedComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
+  ],
   providers: [FeedDataService, CanDeactivateNewGuardService],
   bootstrap: [AppComponent]
 })

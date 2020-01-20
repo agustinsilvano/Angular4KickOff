@@ -1,35 +1,33 @@
 import { Subject } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { OnInit, Injectable } from '@angular/core';
 
 export interface FeedData {
+  id?: number;
   title: string;
   content: string;
 }
-
+@Injectable()
 export class FeedDataService {
   private feedsInfo: Array<FeedData> = new Array<FeedData>();
   feedAdded: Subject<any> = new Subject<any>();
 
-  constructor() {
-    this.seedData();
+  constructor(private http: HttpClient) {
+    console.log('Fetching data : ');
+    this.fetchData();
   }
 
-  seedData() {
-    const f1: FeedData = {
-      title: 'Estamos de viaje!',
-      content: 'Estamos yendo de joda.'
-    };
-    const f2: FeedData = {
-      title: 'Vuelta al laburo',
-      content: 'Estamos yendo a laburar.'
-    };
-    const f3: FeedData = {
-      title: 'Aprendiendo angular.',
-      content: 'Pa aprender y volar!!!!!'
-    };
-
-    this.feedsInfo.push(f1);
-    this.feedsInfo.push(f2);
-    this.feedsInfo.push(f3);
+  fetchData() {
+    this.http
+      .get<Array<any>>('https://localhost:5001/feed', {
+        headers: new HttpHeaders().set('Content-Type', 'application/json')
+      })
+      .subscribe(feeds => {
+        console.log(feeds);
+        // this.feedsInfo = feeds;
+        console.log('---------------------');
+        console.log(feeds);
+      });
   }
 
   getDataForFeeds(): Array<FeedData> {
