@@ -10,24 +10,32 @@ import { Observable } from 'rxjs';
   styleUrls: ['./news.component.css']
   // providers: [FeedDataService]
 })
-export class NewsComponent implements OnInit, CanAddComponentDeactivate {
+export class NewsComponent implements CanAddComponentDeactivate {
   feeds: FeedComponent[] = new Array<FeedComponent>();
 
   lastReadedFeedId: number;
+  error = null;
+  isFetching: boolean = false;
 
   constructor(private feedDataService: FeedDataService) {
-    this.feedDataService.feedAdded.subscribe(() => {
-      this.feeds.splice(0, this.feeds.length);
-      const feedData: Array<FeedData> = this.feedDataService.getDataForFeeds();
+    this.isFetching = true;
+    setTimeout(() => {
+      this.feedDataService.fetchData().subscribe(
+        data => {
+          data.forEach(f => {
+            const feedComp = new FeedComponent();
+            feedComp.title = f.title;
+            feedComp.content = f.content;
 
-      feedData.forEach(f => {
-        const feedComp = new FeedComponent();
-        feedComp.title = f.title;
-        feedComp.content = f.content;
-
-        this.feeds.push(feedComp);
-      });
-    });
+            this.feeds.push(feedComp);
+          });
+        },
+        error => {
+          this.error = error.message;
+        }
+      );
+      this.isFetching = false;
+    }, 3000);
   }
 
   onSelectedFeed(feed: FeedComponent) {
@@ -35,18 +43,6 @@ export class NewsComponent implements OnInit, CanAddComponentDeactivate {
   }
 
   onFeedAdded() {}
-
-  ngOnInit() {
-    const feedData: Array<FeedData> = this.feedDataService.getDataForFeeds();
-
-    feedData.forEach(f => {
-      const feedComp = new FeedComponent();
-      feedComp.title = f.title;
-      feedComp.content = f.content;
-
-      this.feeds.push(feedComp);
-    });
-  }
 
   canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
     if (this.lastReadedFeedId == null || this.lastReadedFeedId === 0) {

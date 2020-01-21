@@ -14,7 +14,6 @@ import { PhoneContactComponent } from './phone-contact/phone-contact.component';
 import { WhatsAppContactComponent } from './whats-app-contact/whats-app-contact.component';
 import { EmailContactComponent } from './email-contact/email-contact.component';
 import { AddFeedComponent } from './add-feed/add-feed.component';
-import { FeedDataService } from './services/feeddata.service';
 import { CanDeactivateNewGuardService } from './services/can-deactivate-new-guard.service';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -39,7 +38,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [FeedDataService, CanDeactivateNewGuardService],
+  providers: [CanDeactivateNewGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

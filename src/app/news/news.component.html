@@ -1,5 +1,10 @@
 <div>
+  <div class="alert alert-danger" *ngIf="error">
+    <h1>Ha ocurrido un error!</h1>
+    <p>{{ error }}</p>
+  </div>
   <h1>Sección de noticias</h1>
+  <p *ngIf="isFetching">Cargando...</p>
   <div *ngFor="let f of feeds">
     <app-feed
       [id]="f.id"
