@@ -1,5 +1,5 @@
 import { Subject, Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { OnInit, Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 
@@ -15,10 +15,11 @@ export class FeedDataService {
 
   constructor(private http: HttpClient) {}
 
-  fetchData(): Observable<Array<FeedData>> {
+  fetchData(feedId: string = '0'): Observable<Array<FeedData>> {
     return this.http
       .get<Array<FeedData>>('http://localhost:61749/feed', {
-        headers: new HttpHeaders().set('Content-Type', 'application/json')
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+        params: new HttpParams().set('feedId', feedId)
       })
       .pipe(
         map(responseData => {

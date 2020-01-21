@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
   selector: 'app-news',
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.css']
-  // providers: [FeedDataService]
 })
 export class NewsComponent implements CanAddComponentDeactivate {
   feeds: FeedComponent[] = new Array<FeedComponent>();
@@ -40,6 +39,10 @@ export class NewsComponent implements CanAddComponentDeactivate {
 
   onSelectedFeed(feed: FeedComponent) {
     this.lastReadedFeedId = feed.id;
+  }
+
+  onClosingError() {
+    this.error = null;
   }
 
   onFeedAdded() {}

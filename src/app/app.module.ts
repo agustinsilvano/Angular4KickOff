@@ -14,8 +14,8 @@ import { PhoneContactComponent } from './phone-contact/phone-contact.component';
 import { WhatsAppContactComponent } from './whats-app-contact/whats-app-contact.component';
 import { EmailContactComponent } from './email-contact/email-contact.component';
 import { AddFeedComponent } from './add-feed/add-feed.component';
-import { CanDeactivateNewGuardService } from './services/can-deactivate-new-guard.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AppActivityInterceptorService } from './interceptors/app-activity-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,13 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [CanDeactivateNewGuardService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AppActivityInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
